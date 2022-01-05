@@ -8,6 +8,7 @@ image1.width = image1.height * 1.333;
 
 const inputSlider = document.getElementById("resolution");
 const inputLabel = document.getElementById("res-lab");
+const value = parseInt(inputSlider.value);
 
 inputSlider.addEventListener("change", () => handleSlider());
 
@@ -82,7 +83,7 @@ class AsciiFX {
       }
     }
 
-    console.log(this.#imageCellArr);
+    // console.log(this.#imageCellArr);
   }
 
   #drawASCII() {
@@ -105,6 +106,7 @@ function handleSlider() {
     ctx.drawImage(image1, 0, 0, canvas.width, canvas.height);
   } else {
     inputLabel.innerHTML = `Resolution: ${inputSlider.value}px`;
+    ctx.font = `${parseInt(inputSlider.value) * 1.2}px Verdana`;
     effect.draw(parseInt(inputSlider.value));
   }
 }
@@ -113,5 +115,7 @@ image1.onload = init = () => {
   canvas.height = image1.height;
   //   ctx.drawImage(image1, 0, 0, image1.width, image1.height);
   effect = new AsciiFX(ctx, image1.width, image1.height);
-  effect.draw(3);
+
+  effect.draw(value);
+  handleSlider();
 };
