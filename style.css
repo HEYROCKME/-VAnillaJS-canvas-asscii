@@ -20,5 +20,6 @@ div.screen {
   max-width: 250px;
   display: flex;
   flex-direction: column;
-  background-color: antiquewhite;
+  color: white;
+  /* background-color: antiquewhite; */
 }

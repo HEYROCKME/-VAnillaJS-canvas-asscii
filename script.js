@@ -6,6 +6,11 @@ image1.src = "../img/ALWN1426.JPG";
 image1.height = window.innerWidth * 0.5;
 image1.width = image1.height * 1.333;
 
+const inputSlider = document.getElementById("resolution");
+const inputLabel = document.getElementById("res-lab");
+
+inputSlider.addEventListener("change", () => handleSlider());
+
 class Cell {
   constructor(x, y, symbol, color) {
     this.x = x;
@@ -94,6 +99,15 @@ class AsciiFX {
 
 let effect;
 
+function handleSlider() {
+  if (inputSlider.value == 1) {
+    inputLabel.innerHTML = "Original Image";
+    ctx.drawImage(image1, 0, 0, canvas.width, canvas.height);
+  } else {
+    inputLabel.innerHTML = `Resolution: ${inputSlider.value}px`;
+    effect.draw(parseInt(inputSlider.value));
+  }
+}
 image1.onload = init = () => {
   canvas.width = image1.width;
   canvas.height = image1.height;
